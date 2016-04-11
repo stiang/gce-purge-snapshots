@@ -1,13 +1,13 @@
-# ec2-purge-snapshots
+# gce-purge-snapshots
 
 ## What is it?
 
-A Ruby script that lets you purge (delete) AWS EC2 snapshots
-according to rules you set up. 
+A command-line tool that lets you purge (delete) Google Compute 
+Engine snapshots according to rules you set up. 
 
 For example, 
 
-    ./ec2-purge-snapshots.rb -v all -h 48 -d 14 -w 4 -m 24
+    ./gce-purge-snapshots -v all -h 48 -d 14 -w 4 -m 24
 
 means "keep every snapshot on all volumes for 48 hours, one 
 per day for two weeks, one per week for four weeks, one per 
@@ -18,7 +18,7 @@ say, every hour, then run this script periodically to clean up.
 
 ## Usage
 
-    Usage: ./ec2-purge-snapshots.rb [options]
+    Usage: ./gce-purge-snapshots [options]
 
     Deletes ALL snapshots (for the volumes specified) that do not
     match the rules below. Rules are applied in the following order:
@@ -37,20 +37,12 @@ say, every hour, then run this script periodically to clean up.
         -m, --months MONTHS              The number of months to keep ONE snapshot per month
 
     OPTIONAL options:
-        -a, --access-key-file FILENAME   The path to a file containing the AWS access key to use,
-                                         otherwise use the value of $AWS_ACCESS_KEY
-        -e, --secret-key-file FILENAME   The path to a file containing the AWS secret key to use,
-                                         otherwise use the value of $AWS_SECRET_KEY
         -n, --noop                       Don't actually delete, but print what would be done
         -q, --quiet                      Print deletions only
         -s, --silent                     Print summary only
             --no-summary                 Don't print summary
         -x, --extremely-silent           Don't print anything unless something goes wrong
-        -u, --url URL                    The Amazon EC2 region URL (default is US East 1)
             --help                       Show this message
-
-## Known issues
-* If you have many snapshots the script will eventually return the AWS error RequestLimitExceeded. Not sure how to fix this, since there is no information given about which limit is exceeded - maybe just add a slight delay between each API call?
 
 ## Contribute
 Please fork and add pull requests if you would like to improve this package.
