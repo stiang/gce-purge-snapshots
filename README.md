@@ -1,3 +1,5 @@
+# *NOTE:* This script has not been converted from [stiang/ec2-purge-snapshots](https://github.com/stiang/ec2-purge-snapshots) yet
+
 # gce-purge-snapshots
 
 ## What is it?
